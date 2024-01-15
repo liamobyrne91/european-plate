@@ -1,0 +1,35 @@
+{
+   "type":"APL",
+   "version":"2023.3",
+   "license":"Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+   "import":[
+      {
+         "name":"alexa-layouts",
+         "version":"1.7.0"
+      }
+   ],
+   "mainTemplate":{
+      "parameters":[
+         "payload"
+      ],
+      "items":[
+         {
+            "type":"AlexaDetail",
+            "detailImageAlignment":"right",
+            "headerTitle":"${payload.detailImageRightData.title}",
+            "headerAttributionImage":"${payload.detailImageRightData.logoUrl}",
+            "headerDivider":true,
+            "hintText": "Hint Text",
+            "imageBlurredBackground":false,
+            "imageScale":"best-fit",
+            "imageAspectRatio":"square",
+            "imageAlignment":"right",
+            "imageShadow":false,
+            "imageSource":"${payload.detailImageRightData.detailImage}",
+            "primaryText":"${payload.detailImageRightData.primaryText}",
+            "backgroundImageSource":"",
+            "theme":"dark"
+         }
+      ]
+   }
+}
