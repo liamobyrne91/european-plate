@@ -1,0 +1,178 @@
+[
+   {
+      "country":"Albania",
+      "code":"A L"
+   },
+   {
+      "country":"Andorra",
+      "code":"A N D"
+   },
+   {
+      "country":"Austria",
+      "code":"A"
+   },
+   {
+      "country":"Belarus",
+      "code":"B Y"
+   },
+   {
+      "country":"Belgium",
+      "code":"B"
+   },
+   {
+      "country":"Bosnia and Herzegovina",
+      "code":"B I H"
+   },
+   {
+      "country":"Bulgaria",
+      "code":"B G"
+   },
+   {
+      "country":"Croatia",
+      "code":"H R"
+   },
+   {
+      "country":"Cyprus",
+      "code":"C Y"
+   },
+   {
+      "country":"Czech Republic",
+      "code":"C Z"
+   },
+   {
+      "country":"Denmark",
+      "code":"D K"
+   },
+   {
+      "country":"Estonia",
+      "code":"E S T"
+   },
+   {
+      "country":"Finland",
+      "code":"F I N"
+   },
+   {
+      "country":"France",
+      "code":"F"
+   },
+   {
+      "country":"Germany",
+      "code":"D"
+   },
+   {
+      "country":"Greece",
+      "code":"G R"
+   },
+   {
+      "country":"Hungary",
+      "code":"H"
+   },
+   {
+      "country":"Iceland",
+      "code":"I S"
+   },
+   {
+      "country":"Ireland",
+      "code":"I R L"
+   },
+   {
+      "country":"Italy",
+      "code":"I"
+   },
+   {
+      "country":"Latvia",
+      "code":"L V"
+   },
+   {
+      "country":"Liechtenstein",
+      "code":"F L"
+   },
+   {
+      "country":"Lithuania",
+      "code":"L T"
+   },
+   {
+      "country":"Luxembourg",
+      "code":"L"
+   },
+   {
+      "country":"Malta",
+      "code":"M"
+   },
+   {
+      "country":"Moldova",
+      "code":"M D"
+   },
+   {
+      "country":"Monaco",
+      "code":"M C"
+   },
+   {
+      "country":"Montenegro",
+      "code":"M N E"
+   },
+   {
+      "country":"Netherlands",
+      "code":"N L"
+   },
+   {
+      "country":"North Macedonia",
+      "code":"N M K"
+   },
+   {
+      "country":"Norway",
+      "code":"N"
+   },
+   {
+      "country":"Poland",
+      "code":"P L"
+   },
+   {
+      "country":"Portugal",
+      "code":"P"
+   },
+   {
+      "country":"Romania",
+      "code":"R O"
+   },
+   {
+      "country":"San Marino",
+      "code":"R S M"
+   },
+   {
+      "country":"Serbia",
+      "code":"S R B"
+   },
+   {
+      "country":"Slovakia",
+      "code":"S K"
+   },
+   {
+      "country":"Slovenia",
+      "code":"S L O"
+   },
+   {
+      "country":"Spain",
+      "code":"E"
+   },
+   {
+      "country":"Sweden",
+      "code":"S"
+   },
+   {
+      "country":"Switzerland",
+      "code":"C H"
+   },
+   {
+      "country":"Ukraine",
+      "code":"U A"
+   },
+   {
+      "country":"United Kingdom",
+      "code":"U K"
+   },
+   {
+      "country":"Vatican City",
+      "code":"V"
+   }
+]
