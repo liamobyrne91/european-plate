@@ -1,178 +1,222 @@
 [
    {
       "country":"Albania",
+      "pays":"Albanie",
       "code":"A L"
    },
    {
       "country":"Andorra",
+      "pays":"Andorre",
       "code":"A N D"
    },
    {
       "country":"Austria",
+      "pays":"L'Autriche",
       "code":"A"
    },
    {
       "country":"Belarus",
+      "pays":"Biélorussie",
       "code":"B Y"
    },
    {
       "country":"Belgium",
+      "pays":"Belgique",
       "code":"B"
    },
    {
       "country":"Bosnia and Herzegovina",
+      "pays":"Bosnie Herzégovine",
       "code":"B I H"
    },
    {
       "country":"Bulgaria",
+      "pays":"Bulgarie",
       "code":"B G"
    },
    {
       "country":"Croatia",
+      "pays":"Croatie",
       "code":"H R"
    },
    {
       "country":"Cyprus",
+      "pays":"Chypre",
       "code":"C Y"
    },
    {
       "country":"Czech Republic",
+      "pays":"République tchèque",
       "code":"C Z"
    },
    {
       "country":"Denmark",
+      "pays":"Danemark",
       "code":"D K"
    },
    {
       "country":"Estonia",
+      "pays":"Estonie",
       "code":"E S T"
    },
    {
       "country":"Finland",
+      "pays":"Finlande",
       "code":"F I N"
    },
    {
       "country":"France",
+      "pays":"France",
       "code":"F"
    },
    {
       "country":"Germany",
+      "pays":"Allemagne",
       "code":"D"
    },
    {
       "country":"Greece",
+      "pays":"Grèce",
       "code":"G R"
    },
    {
       "country":"Hungary",
+      "pays":"Hongrie",
       "code":"H"
    },
    {
       "country":"Iceland",
+      "pays":"Islande",
       "code":"I S"
    },
    {
       "country":"Ireland",
+      "pays":"Irlande",
       "code":"I R L"
    },
    {
       "country":"Italy",
+      "pays":"Italie",
       "code":"I"
    },
    {
       "country":"Latvia",
+      "pays":"Lettonie",
       "code":"L V"
    },
    {
       "country":"Liechtenstein",
+      "pays":"Liechtenstein",
       "code":"F L"
    },
    {
       "country":"Lithuania",
+      "pays":"Lituanie",
       "code":"L T"
    },
    {
       "country":"Luxembourg",
+      "pays":"Luxembourg",
       "code":"L"
    },
    {
       "country":"Malta",
+      "pays":"Malte",
       "code":"M"
    },
    {
       "country":"Moldova",
+      "pays":"Moldavie",
       "code":"M D"
    },
    {
       "country":"Monaco",
+      "pays":"Monaco",
       "code":"M C"
    },
    {
       "country":"Montenegro",
+      "pays":"Monténégro",
       "code":"M N E"
    },
    {
       "country":"Netherlands",
+      "pays":"Pays-Bas",
       "code":"N L"
    },
    {
       "country":"North Macedonia",
+      "pays":"Macédoine du Nord",
       "code":"N M K"
    },
    {
       "country":"Norway",
+      "pays":"Norvège",
       "code":"N"
    },
    {
       "country":"Poland",
+      "pays":"Pologne",
       "code":"P L"
    },
    {
       "country":"Portugal",
+      "pays":"le Portugal",
       "code":"P"
    },
    {
       "country":"Romania",
+      "pays":"Roumanie",
       "code":"R O"
    },
    {
       "country":"San Marino",
+      "pays":"Saint Marin",
       "code":"R S M"
    },
    {
       "country":"Serbia",
+      "pays":"Serbie",
       "code":"S R B"
    },
    {
       "country":"Slovakia",
+      "pays":"Slovaquie",
       "code":"S K"
    },
    {
       "country":"Slovenia",
+      "pays":"Slovénie",
       "code":"S L O"
    },
    {
       "country":"Spain",
+      "pays":"Espagne",
       "code":"E"
    },
    {
       "country":"Sweden",
+      "pays":"Suède",
       "code":"S"
    },
    {
       "country":"Switzerland",
+      "pays":"Suisse",
       "code":"C H"
    },
    {
       "country":"Ukraine",
+      "pays":"Ukraine",
       "code":"U A"
    },
    {
       "country":"United Kingdom",
+      "pays":"Royaume-Uni",
       "code":"U K"
    },
    {
       "country":"Vatican City",
+      "pays":"Cité du Vatican",
       "code":"V"
    }
 ]
