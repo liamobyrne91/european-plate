@@ -15,7 +15,11 @@ const LaunchRequestHandler = {
 		return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
 	},
 	handle(handlerInput) {
-		const speakOutput = 'Welcome to European Plate.';
+	    const locale = handlerInput.requestEnvelope.request.locale;
+		let speakOutput = 'Welcome to European Plate.';
+		if (locale === "fr-FR") {
+		    speakOutput = 'Bienvenue sur European Plate.';
+		}
 		let responseBuilder = handlerInput.responseBuilder;
 		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
 			responseBuilder.addDirective({
@@ -45,7 +49,13 @@ const HelloWorldIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to European Plate.';
+        const locale = handlerInput.requestEnvelope.request.locale;
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+        let speakOutput = 'Welcome to European Plate.';
+		if (locale === "fr-FR") {
+		    speakOutput = 'Bienvenue sur European Plate.';
+		}
 		let responseBuilder = handlerInput.responseBuilder;
 		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
 			responseBuilder.addDirective({
@@ -62,7 +72,8 @@ const HelloWorldIntentHandler = {
 				}
 			});
 		}
-
+		sessionAttributes.speakOutput = speakOutput;
+        handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -72,20 +83,33 @@ const HelloWorldIntentHandler = {
 
 const GetCountryByCodeIntentHandler = {
 	canHandle(handlerInput) {
-		return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetCountryByCodeIntent';
+		return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+		&& Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetCountryByCodeIntent';
 	},
 	handle(handlerInput) {
+	    const locale = handlerInput.requestEnvelope.request.locale;
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 		const slot = handlerInput.requestEnvelope.request.intent.slots;
-		const repromptOutput = 'Try "What country is represented by B?"';
+		let repromptOutput = 'Try: Which country is represented by B?';
+		if (locale === "fr-FR") {
+		    repromptOutput = 'Essayez: quel pays est représenté par B?';
+		}
 		let detailImage;
 		let speakOutput;
 		let responseBuilder = handlerInput.responseBuilder;
 		if (typeof slot.CountryCode.resolutions.resolutionsPerAuthority[0].values === 'undefined') {
 			speakOutput = 'Sorry, I don\'t know what you mean by ' + slot.CountryCode.value + '.';
+    		if (locale === "fr-FR") {
+    		    speakOutput = 'Désolé, je ne vois pas ce que tu veux dire par ' + slot.CountryCode.value + '.';
+    		}
 		} else {
 			const findCountry = handlerInput.requestEnvelope.request.intent.slots.CountryCode.resolutions.resolutionsPerAuthority[0].values[0].value.name;
 			let found = EuropeanPlate.find(obj => obj.code === findCountry);
 			speakOutput = found.code + ' denotes ' + found.country + '.';
+    		if (locale === "fr-FR") {
+    		    speakOutput = found.code + ' désigne ' + found.pays + '.';
+    		}
 			detailImage = Util.getS3PreSignedUrl('Media/' + found.country + '.webp');
 		}
 		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
@@ -103,11 +127,44 @@ const GetCountryByCodeIntentHandler = {
 				}
 			});
 		}
+		sessionAttributes.detailImage = detailImage;
+		sessionAttributes.speakOutput = speakOutput;
+        handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
 		return handlerInput.responseBuilder
 		    .speak(speakOutput)
 		    .reprompt(repromptOutput)
 		    .getResponse();
 	}
+};
+
+const RepeatIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.RepeatIntent';
+    },
+    handle(handlerInput) {
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+        let responseBuilder = handlerInput.responseBuilder;
+		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
+			responseBuilder.addDirective({
+				type: 'Alexa.Presentation.APL.RenderDocument',
+				version: '1.0',
+				document: Presentation,
+				datasources: {
+					detailImageRightData: {
+						title: Title,
+						logoUrl: LogoUrl,
+						primaryText: sessionAttributes.speakOutput,
+						detailImage: sessionAttributes.detailImage || sessionAttributes.LogoUrl
+					}
+				}
+			});
+		}
+        return handlerInput.responseBuilder
+            .speak(sessionAttributes.speakOutput)
+            .reprompt(sessionAttributes.repromptSpeech)
+            .getResponse();
+    },
 };
 
 const HelpIntentHandler = {
@@ -116,7 +173,13 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-		const speakOutput = 'Try "What country is represented by B?"';
+        const locale = handlerInput.requestEnvelope.request.locale;
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+		let speakOutput = 'Try: Which country is represented by B?';
+		if (locale === "fr-FR") {
+		    speakOutput = 'Essayez: quel pays est représenté par B?';
+		}
 		let responseBuilder = handlerInput.responseBuilder;
 		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
 			responseBuilder.addDirective({
@@ -133,9 +196,12 @@ const HelpIntentHandler = {
 				}
 			});
 		}
+		sessionAttributes.detailImage = LogoUrl;
+		sessionAttributes.speakOutput = speakOutput;
+        handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
 		return handlerInput.responseBuilder
-		    .speak(speakOutput)
-		    .reprompt(speakOutput)
+		    .speak(sessionAttributes.speakOutput)
+		    .reprompt(sessionAttributes.speakOutput)
 		    .getResponse();
 	}
 };
@@ -147,7 +213,11 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-		const speakOutput = 'Thanks for using European Plate.';
+        const locale = handlerInput.requestEnvelope.request.locale;
+		let speakOutput = 'Thanks for using European Plate.';
+		if (locale === "fr-FR") {
+		    speakOutput = 'Merci d\'utiliser European Plate.';
+		}
 		let responseBuilder = handlerInput.responseBuilder;
 		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
 			responseBuilder.addDirective({
@@ -181,7 +251,11 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-		const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const locale = handlerInput.requestEnvelope.request.locale;
+		let speakOutput = 'Sorry, I don\'t know anything about that. Try Again.';
+		if (locale === "fr-FR") {
+		    speakOutput = 'Désolé, je n\'en sais rien. Essayer à nouveau.';
+		}
 		let responseBuilder = handlerInput.responseBuilder;
 		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
 			responseBuilder.addDirective({
@@ -226,9 +300,12 @@ const IntentReflectorHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
     },
     handle(handlerInput) {
+        const locale = handlerInput.requestEnvelope.request.locale;
         const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-        const speakOutput = `You just triggered ${intentName}`;
-
+        let speakOutput = `You just triggered ${intentName}`;
+		if (locale === "fr-FR") {
+		    speakOutput = `Tu viens de déclencher ${intentName}`;
+		}
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
@@ -245,7 +322,11 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-		const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
+        const locale = handlerInput.requestEnvelope.request.locale;
+		let speakOutput = 'Sorry, I had trouble doing what you asked. Try Again.';
+		if (locale === "fr-FR") {
+		    speakOutput = 'Désolé, j\'ai eu du mal à faire ce que vous avez demandé. Essayer à nouveau.';
+		}
 		let responseBuilder = handlerInput.responseBuilder;
 		if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
 			responseBuilder.addDirective({
@@ -277,6 +358,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         LaunchRequestHandler,
         HelloWorldIntentHandler,
         GetCountryByCodeIntentHandler,
+        RepeatIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
